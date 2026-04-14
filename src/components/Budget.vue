@@ -1,14 +1,27 @@
-<script></script>
+<script setup>
+import { ref } from "vue";
+
+const budget = ref(0);
+
+const handleSubmit = () => {
+  if (!budget.value || budget.value <= 0 || isNaN(budget.value)) {
+    alert("El presupuesto igresado no es válido");
+    return;
+  }
+};
+</script>
 
 <template>
-  <form class="budget-form">
+  <form class="budget-form" @submit.prevent="handleSubmit">
     <div class="field">
       <label class="label" for="new-budget">Definir Presupuesto</label>
       <input
         class="input"
         type="number"
         id="new-budget"
+        min="0"
         placeholder="Ingresa tu presupuesto"
+        v-model.number="budget"
       />
     </div>
     <input class="submit" type="submit" value="Añadir Presupuesto" />
