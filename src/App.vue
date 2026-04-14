@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import Budget from "./components/Budget.vue";
 import TotalBudget from "./components/TotalBudget.vue";
-
+import newExpense from "./assets/img/nuevo-gasto.svg";
 const budget = ref(0);
 const spent = ref(0);
 
@@ -21,6 +21,11 @@ const addBudget = (value) => {
         <TotalBudget v-else :budget="budget" :spent="spent" />
       </div>
     </header>
+    <main class="container">
+      <div v-if="budget > 0" class="container new-expense-container">
+        <img :src="newExpense" alt="Nuevo gasto" />
+      </div>
+    </main>
   </div>
 </template>
 
@@ -120,6 +125,23 @@ header {
   @media (min-width: 1300px) {
     padding: 5rem;
     padding-top: 4rem;
+  }
+}
+
+.new-expense-container {
+  display: flex;
+  justify-content: flex-end;
+
+  position: fixed;
+  bottom: 2rem;
+
+  @media (min-width: 1300px) {
+    bottom: 5rem;
+  }
+
+  img {
+    width: 3rem;
+    height: 3rem;
   }
 }
 </style>
