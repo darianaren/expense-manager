@@ -1,11 +1,16 @@
 <script setup>
 import { ref } from "vue";
+import Alert from "./Alert.vue";
 
 const budget = ref(0);
+const error = ref("");
 
 const handleSubmit = () => {
   if (!budget.value || budget.value <= 0 || isNaN(budget.value)) {
-    alert("El presupuesto igresado no es válido");
+    error.value = "El presupuesto igresado no es válido";
+    setTimeout(() => {
+      error.value = "";
+    }, 3000);
     return;
   }
 };
@@ -13,6 +18,9 @@ const handleSubmit = () => {
 
 <template>
   <form class="budget-form" @submit.prevent="handleSubmit">
+    <Alert v-if="error">
+      <p>{{ error }}</p>
+    </Alert>
     <div class="field">
       <label class="label" for="new-budget">Definir Presupuesto</label>
       <input
