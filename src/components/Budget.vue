@@ -2,6 +2,8 @@
 import { ref } from "vue";
 import Alert from "./Alert.vue";
 
+const emit = defineEmits(["addBudget"]);
+
 const budget = ref(0);
 const error = ref("");
 
@@ -13,6 +15,7 @@ const handleSubmit = () => {
     }, 3000);
     return;
   }
+  emit("addBudget", budget.value);
 };
 </script>
 
