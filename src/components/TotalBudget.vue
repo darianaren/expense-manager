@@ -1,5 +1,6 @@
 <script setup>
 import image from "../assets/img/grafico.jpg";
+import { formatCurrency } from "../helpers/formatCurrency";
 
 const props = defineProps({
   budget: {
@@ -20,9 +21,9 @@ const props = defineProps({
     </div>
     <div class="budget-container">
       <button>Restablecer presupuesto</button>
-      <p><span>Presupuesto:</span> ${{ budget }}</p>
-      <p><span>Disponible:</span> ${{ budget - spent }}</p>
-      <p><span>Gastado:</span> ${{ spent }}</p>
+      <p><span>Presupuesto:</span> {{ formatCurrency(budget) }}</p>
+      <p><span>Disponible:</span> {{ formatCurrency(budget - spent) }}</p>
+      <p><span>Gastado:</span> {{ formatCurrency(spent) }}</p>
     </div>
   </div>
 </template>
