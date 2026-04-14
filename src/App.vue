@@ -2,8 +2,10 @@
 import { ref } from "vue";
 
 import Budget from "./components/Budget.vue";
+import TotalBudget from "./components/TotalBudget.vue";
 
 const budget = ref(0);
+const spent = ref(0);
 
 const addBudget = (value) => {
   budget.value = value;
@@ -16,6 +18,7 @@ const addBudget = (value) => {
       <h1>Planificador de Gastos</h1>
       <div class="container-header container shadow">
         <Budget v-if="budget === 0" @addBudget="addBudget" />
+        <TotalBudget v-else :budget="budget" :spent="spent" />
       </div>
     </header>
   </div>
@@ -28,7 +31,7 @@ const addBudget = (value) => {
   --white: #fff;
   --gray-light: #f5f5f5;
   --gray: #94a3b8;
-  --gray-dark: #64748b;
+  --gray-dark: #4b5a6e;
   --black: #000;
 }
 
